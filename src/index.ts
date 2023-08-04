@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from "discord.js";
+import { ButtonInteraction, Client, GatewayIntentBits } from "discord.js";
 import * as commandsModules from "./commands";
 import config from "./config";
 import mongoose from "mongoose";
@@ -15,7 +15,17 @@ client.once("ready", async () => {
 });
 
 client.on("interactionCreate", async (interaction: any) => {
-  commandCheck(interaction);
+  if (interaction.isCommand()) {
+    const { commandName } = interaction;
+    console.log(commandName);
+    commands[commandName].execute(interaction, client);
+  } else if (interaction.isButton()) {
+    const btn_id = interaction.customId;
+    console.log(btn_id);
+  } else {
+    return;
+  }
+
   // return interaction.reply("only dms"); uncomment to force users to dm
 });
 
@@ -24,7 +34,7 @@ client.on("message", async (interaction: any) => {
 });
 
 function commandCheck(interaction: any) {
-  if (!interaction.isCommand()) {
+  if (!interaction.isCommand() || !interaction.isButton()) {
     return;
   }
   const { commandName } = interaction;

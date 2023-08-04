@@ -7,8 +7,8 @@ interface IUser extends Document {
 }
 
 const userSchema: Schema = new Schema({
-  userID: { type: [String] },
-  terms: { type: [Boolean] },
+  userID: { type: String },
+  terms: { type: Boolean },
   addresses: { type: [String] },
 });
 
