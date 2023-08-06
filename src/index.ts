@@ -15,16 +15,7 @@ client.once("ready", async () => {
 });
 
 client.on("interactionCreate", async (interaction: any) => {
-  if (interaction.isCommand()) {
-    const { commandName } = interaction;
-    console.log(commandName);
-    commands[commandName].execute(interaction, client);
-  } else if (interaction.isButton()) {
-    const btn_id = interaction.customId;
-    console.log(btn_id);
-  } else {
-    return;
-  }
+  commandCheck(interaction);
 
   // return interaction.reply("only dms"); uncomment to force users to dm
 });
@@ -34,7 +25,7 @@ client.on("message", async (interaction: any) => {
 });
 
 function commandCheck(interaction: any) {
-  if (!interaction.isCommand() || !interaction.isButton()) {
+  if (!interaction.isCommand()) {
     return;
   }
   const { commandName } = interaction;
