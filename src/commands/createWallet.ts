@@ -37,21 +37,4 @@ export async function execute(interaction: CommandInteraction) {
         wallet.privateKey
     );
   }
-
-  console.log("address:", wallet.address);
-  console.log("mnemonic:", wallet.mnemonic.phrase);
-  console.log("privateKey:", wallet.privateKey);
-  console.log("userid", name);
-
-  //if user id exists store new wallet
-  //if user does not exist create entry and store wallet
-
-  return interaction.reply(
-    "address: " +
-      wallet.address +
-      "\n mnemonic: " +
-      wallet.mnemonic.phrase +
-      "\n privateKey: " +
-      wallet.privateKey
-  );
 }
