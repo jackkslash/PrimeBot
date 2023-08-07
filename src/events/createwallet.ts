@@ -1,14 +1,9 @@
-import { CommandInteraction, SlashCommandBuilder } from "discord.js";
+import { ButtonBuilder, ButtonStyle, CommandInteraction } from "discord.js";
 import { ethers } from "ethers";
 import { User } from "../models/User";
 
-export const data = new SlashCommandBuilder()
-  .setName("newwallet")
-  .setDescription("create wallet");
-
 export async function execute(interaction: CommandInteraction) {
   const wallet = ethers.Wallet.createRandom();
-  const name = interaction.user.id;
 
   const user = interaction.user.id;
   const q = await User.findOne({ userID: user });
@@ -28,13 +23,14 @@ export async function execute(interaction: CommandInteraction) {
       { $push: { addresses: { address } } }
     );
 
-    return interaction.reply(
-      "address: " +
+    return interaction.reply({
+      content:
+        "address: " +
         wallet.address +
         "\n mnemonic: " +
         wallet.mnemonic.phrase +
         "\n privateKey: " +
-        wallet.privateKey
-    );
+        wallet.privateKey,
+    });
   }
 }
