@@ -1,6 +1,7 @@
 import { ButtonBuilder, ButtonStyle, CommandInteraction } from "discord.js";
 import { ethers } from "ethers";
 import { User } from "../models/User";
+import homeRow from "../components/home";
 
 export async function execute(interaction: CommandInteraction) {
   const wallet = ethers.Wallet.createRandom();
@@ -12,6 +13,7 @@ export async function execute(interaction: CommandInteraction) {
       "Run the /init command before using this command."
     );
   } else {
+    const test = homeRow("home");
     const address = {
       address: wallet.address,
       mnemonic: wallet.mnemonic.phrase,
@@ -31,6 +33,7 @@ export async function execute(interaction: CommandInteraction) {
         wallet.mnemonic.phrase +
         "\n privateKey: " +
         wallet.privateKey,
+      components: [test],
     });
   }
 }
