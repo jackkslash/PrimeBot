@@ -1,4 +1,4 @@
-import { ButtonBuilder, ButtonStyle, CommandInteraction } from "discord.js";
+import { CommandInteraction } from "discord.js";
 import { ethers } from "ethers";
 import { User } from "../models/User";
 import homeRow from "../components/home";
@@ -13,7 +13,7 @@ export async function execute(interaction: CommandInteraction) {
       "Run the /init command before using this command."
     );
   } else {
-    const test = homeRow("home");
+    const row = homeRow(true);
     const address = {
       address: wallet.address,
       mnemonic: wallet.mnemonic.phrase,
@@ -33,7 +33,7 @@ export async function execute(interaction: CommandInteraction) {
         wallet.mnemonic.phrase +
         "\n privateKey: " +
         wallet.privateKey,
-      components: [test],
+      components: [row],
     });
   }
 }

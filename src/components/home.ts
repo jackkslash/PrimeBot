@@ -1,7 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from "discord.js";
 
-export default function homeRow(state: String) {
-  if (state == "home") {
+export default function homeRow(state: Boolean) {
+  if (state == true) {
     const test = new ButtonBuilder()
       .setCustomId("test")
       .setLabel("Test")

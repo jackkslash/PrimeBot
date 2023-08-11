@@ -12,7 +12,15 @@ export async function execute(interaction: CommandInteraction) {
     .setLabel("Create Wallet")
     .setStyle(ButtonStyle.Success);
 
-  const row = new ActionRowBuilder<ButtonBuilder>().addComponents(create);
+  const mywallets = new ButtonBuilder()
+    .setCustomId("mywallets")
+    .setLabel("My Wallets")
+    .setStyle(ButtonStyle.Success);
+
+  const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+    create,
+    mywallets
+  );
 
   const user = interaction.user.id;
   const q = await User.findOne({ userID: user });
