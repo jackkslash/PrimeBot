@@ -1,7 +1,7 @@
 import { CommandInteraction } from "discord.js";
 import { ethers } from "ethers";
 import { User } from "../models/User";
-import homeRow from "../components/home";
+import homeRow from "../components/homeActionRow";
 
 export async function execute(interaction: CommandInteraction) {
   const wallet = ethers.Wallet.createRandom();
@@ -13,7 +13,7 @@ export async function execute(interaction: CommandInteraction) {
       "Run the /init command before using this command."
     );
   } else {
-    const row = homeRow(true);
+    const row = homeRow(false);
     const address = {
       address: wallet.address,
       mnemonic: wallet.mnemonic.phrase,

@@ -1,6 +1,6 @@
 import { CommandInteraction, EmbedBuilder } from "discord.js";
 import { User } from "../models/User";
-import homeRow from "../components/home";
+import homeRow from "../components/homeActionRow";
 
 export async function execute(interaction: CommandInteraction) {
   const user = interaction.user.id;

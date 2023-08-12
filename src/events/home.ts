@@ -1,26 +1,9 @@
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  CommandInteraction,
-} from "discord.js";
+import { CommandInteraction } from "discord.js";
 import { User } from "../models/User";
+import homeRow from "../components/homeActionRow";
 
 export async function execute(interaction: CommandInteraction) {
-  const create = new ButtonBuilder()
-    .setCustomId("createWallet")
-    .setLabel("Create Wallet")
-    .setStyle(ButtonStyle.Success);
-
-  const mywallets = new ButtonBuilder()
-    .setCustomId("mywallets")
-    .setLabel("My Wallets")
-    .setStyle(ButtonStyle.Success);
-
-  const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
-    create,
-    mywallets
-  );
+  const row = homeRow(true);
 
   const user = interaction.user.id;
   const q = await User.findOne({ userID: user });
