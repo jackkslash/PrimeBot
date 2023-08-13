@@ -15,7 +15,11 @@ export async function execute(interaction: CommandInteraction) {
     const embed = new EmbedBuilder().setTitle("My wallets");
 
     q.addresses.map((data: any, index) => {
-      embed.addFields({ name: "Wallet " + index, value: data.address.address });
+      let i = index + 1;
+      embed.addFields({
+        name: "Wallet " + i,
+        value: data.address.address,
+      });
     });
 
     return interaction.reply({
